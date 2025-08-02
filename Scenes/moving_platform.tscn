@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://m7xjpxvlxfq4"]
+
+[ext_resource type="Texture2D" uid="uid://c48t1aapjw7o3" path="res://Assets/decorations/oak_woods_tileset.png" id="1_vvyo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anqd2"]
+size = Vector2(96, 24)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vvyo4")
+region_enabled = true
+region_rect = Rect2(119.566, 0, 97.0376, 24.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_anqd2")
+one_way_collision = true

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://chufilxhl5p5w"]
+
+[ext_resource type="Texture2D" uid="uid://kpjkt3pkou0u" path="res://Assets/sprites/fruit.png" id="1_lxg10"]
+[ext_resource type="Script" uid="uid://cjmqt43urnksk" path="res://Scripts/collectible_fruit_1.gd" id="1_qi35b"]
+[ext_resource type="AudioStream" uid="uid://b166kp5f47lqn" path="res://Assets/sounds/coin.wav" id="3_i66hv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi35b"]
+radius = 4.0
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_qi35b")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("1_lxg10")
+region_enabled = true
+region_rect = Rect2(1.34027, 49.7176, 11.8785, 13.6044)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
+shape = SubResource("CircleShape2D_qi35b")
+
+[node name="CollectAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_i66hv")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
