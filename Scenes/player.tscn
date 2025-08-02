@@ -426,7 +426,7 @@ physics_interpolation_mode = 1
 position = Vector2(2, -27)
 sprite_frames = SubResource("SpriteFrames_8erm5")
 animation = &"idle"
-frame_progress = 0.0820525
+frame_progress = 0.948957
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19.5)
