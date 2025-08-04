@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd5jqvgdellvc"]
+
+[ext_resource type="Script" uid="uid://rnqtmne2ikvw" path="res://Scripts/TextBox.gd" id="1_b43ja"]
+[ext_resource type="FontFile" uid="uid://c8n56r01l1ofu" path="res://Assets/fonts/PixelOperator8.ttf" id="1_wsvab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgreg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[node name="TextBox" type="CanvasLayer"]
+script = ExtResource("1_b43ja")
+
+[node name="TextBoxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -170.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="TextBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgreg")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="TextBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(28, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_wsvab")
+theme_override_font_sizes/font_size = 32
+text = "*"
+
+[node name="Dialogue" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_wsvab")
+theme_override_font_sizes/font_size = 32
+text = "Place Holder Text xcsdsdsds dvsf
+"
+autowrap_mode = 2
+clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="End" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(28, 32)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_wsvab")
+theme_override_font_sizes/font_size = 32
+text = "v"
+
+[connection signal="ready" from="." to="." method="_on_ready"]

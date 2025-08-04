@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6a1bcx4381io"]
+
+[ext_resource type="Script" uid="uid://dx62upgg06luj" path="res://Scripts/check_point.gd" id="1_oampm"]
+[ext_resource type="Texture2D" uid="uid://d0bs717ctkbmo" path="res://Assets/decorations/lamp.png" id="2_mcmgj"]
+[ext_resource type="AudioStream" uid="uid://sgtq2yng00pn" path="res://Assets/sounds/power_up.wav" id="3_cdwub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdwub"]
+size = Vector2(18, 57)
+
+[node name="CheckPoint" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_oampm")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+position = Vector2(-2, -17)
+texture = ExtResource("2_mcmgj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16.5)
+shape = SubResource("RectangleShape2D_cdwub")
+
+[node name="CheckPointAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cdwub")
+volume_db = -10.816
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

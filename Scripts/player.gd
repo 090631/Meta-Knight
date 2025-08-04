@@ -6,12 +6,14 @@ const jump_total = 2
 var attack_state = false
 var hit_state = false
 
+var check_point = 0
+
 var health = 5;
 var entity = "player"
+var SPEED = 150.0
 
-const SPEED = 150.0
-const ACCELERATION = SPEED*4
-const DECCELERATION = SPEED*3
+const ACCELERATION = 150*4
+const DECCELERATION = 150*3
 const JUMP_VELOCITY = -250.0
 
 @onready var hurt_audio: AudioStreamPlayer2D = $HurtAudio
@@ -21,13 +23,14 @@ const JUMP_VELOCITY = -250.0
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var hit_box: HitBox = $HitBox2
 
-#handles damage taken
+# Handles damage taken
 func _ready():
 	hit_box.Damaged.connect(TakeDamage)
 
+# Handles death
 func TakeDamage (_damage: int ) -> void:
-		player.position.y = 0
-		player.position.x = 0
+		player.position.y = -50
+		player.position.x = check_point
 		health = 10
 		
 func heal(value):
@@ -44,9 +47,9 @@ func _physics_process(delta: float) -> void:
 		hurt_box.monitoring = true
 	
 	# Handles pitfalls
-	if player.position.y > 50:
-		player.position.y = 0
-		player.position.x = 0
+	if player.position.y > 60:
+		player.position.y = -50
+		player.position.x = check_point
 		health = 5
 	
 	# Adds gravity
@@ -63,6 +66,7 @@ func _physics_process(delta: float) -> void:
 		jump_audio.play()
 		velocity.y = JUMP_VELOCITY
 		jump_left -= 1
+		
 	# Variable jump
 	if Input.is_action_just_released("ui_up"):
 		velocity.y = 0

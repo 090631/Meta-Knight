@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://ph6fsnf2kf0k"]
+
+[ext_resource type="Texture2D" uid="uid://bq2ii6esjxxi4" path="res://Assets/decorations/shop_anim.png" id="1_2shtd"]
+[ext_resource type="PackedScene" uid="uid://cd5jqvgdellvc" path="res://Scenes/dialogue_system.tscn" id="3_io27d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6g32"]
+atlas = ExtResource("1_2shtd")
+region = Rect2(0, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l0tm"]
+atlas = ExtResource("1_2shtd")
+region = Rect2(118, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v158k"]
+atlas = ExtResource("1_2shtd")
+region = Rect2(236, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4fw4"]
+atlas = ExtResource("1_2shtd")
+region = Rect2(354, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldgsr"]
+atlas = ExtResource("1_2shtd")
+region = Rect2(472, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5yvi"]
+atlas = ExtResource("1_2shtd")
+region = Rect2(590, 0, 118, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rku1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6g32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l0tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v158k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4fw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldgsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5yvi")
+}],
+"loop": true,
+"name": &"shop",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1phco"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2shtd"]
+size = Vector2(18, 28)
+
+[node name="Shop" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(158, -40)
+sprite_frames = SubResource("SpriteFrames_rku1e")
+animation = &"shop"
+autoplay = "shop"
+frame_progress = 0.729665
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(110, -6)
+shape = SubResource("CircleShape2D_1phco")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(207, -5)
+shape = SubResource("CircleShape2D_1phco")
+
+[node name="TextBox" parent="." instance=ExtResource("3_io27d")]
+
+[node name="DialogueEncounter" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueEncounter"]
+position = Vector2(157, 10)
+shape = SubResource("RectangleShape2D_2shtd")
+
+[connection signal="body_entered" from="DialogueEncounter" to="TextBox" method="_on_dialogue_encounter_body_entered"]
+
+[editable path="TextBox"]

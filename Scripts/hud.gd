@@ -5,5 +5,5 @@ extends CanvasLayer
 
 	
 func  _process(delta):
-	health.text = "Health: " + str(player.health) 
+	health.text = "x" + str(player.health) 
 	hud.follow_viewport_enabled = false

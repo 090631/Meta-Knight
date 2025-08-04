@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dm48hw6k867y8"]
+[gd_scene load_steps=18 format=3 uid="uid://dm48hw6k867y8"]
 
 [ext_resource type="Script" uid="uid://bu65jfbploenj" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://b51d4anjvipea" path="res://Assets/sprites/slime_green.png" id="1_hghv2"]
@@ -13,6 +13,10 @@ region = Rect2(24, 48, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1dp5w"]
 atlas = ExtResource("1_hghv2")
 region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uf12"]
+atlas = ExtResource("1_hghv2")
+region = Rect2(48, 54, 24, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_auwsv"]
 atlas = ExtResource("1_hghv2")
@@ -44,6 +48,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_1dp5w")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8uf12")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_auwsv")
 }],
 "loop": true,
@@ -69,13 +76,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
-size = Vector2(32, 12)
+size = Vector2(26, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0830c"]
-size = Vector2(12, 8)
+size = Vector2(8, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghaa6"]
-size = Vector2(12, 8)
+size = Vector2(8, 10)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(-4, 0)
@@ -85,9 +92,8 @@ script = ExtResource("1_1f0kj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ghaa6")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
-frame_progress = 0.478144
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
@@ -120,7 +126,7 @@ debug_color = Color(0.203269, 0.359972, 0.777605, 0.42)
 stream = ExtResource("5_0830c")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-target_position = Vector2(17, 0)
+target_position = Vector2(13, 0)
 collide_with_areas = true
 
 [node name="RayCastRightArea" type="RayCast2D" parent="."]
@@ -129,7 +135,7 @@ target_position = Vector2(6, 0)
 collide_with_areas = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-target_position = Vector2(-17, 0)
+target_position = Vector2(-13, 0)
 collision_mask = 17
 collide_with_areas = true
 
